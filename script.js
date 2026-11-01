@@ -6,6 +6,8 @@ const SECTION_ACHIEVEMENTS = {
   contact: ["Reached Bedrock", "You made it to the deepest layer. Say hello!"],
 };
 
+const CONTACT_EMAIL = "kentmichaelleojmalinao@gmail.com";
+
 class ContactForm {
   constructor(form) {
     this.form = form;
@@ -42,34 +44,60 @@ class ContactForm {
       } catch {
         const contentType = response.headers.get("content-type") || "";
         if (response.status === 404 || contentType.includes("text/html")) {
-          throw new Error(
+          const error = new Error(
             "This site returned a web page instead of the contact API. Static hosting does not run Flask; start it with `python -m backend.app` or configure the deployed API route.",
           );
+          error.status = response.status;
+          throw error;
         }
 
-        throw new Error(
+        const error = new Error(
           `The contact API returned an unexpected response (HTTP ${response.status}). Check that the Flask API is running.`,
         );
+        error.status = response.status;
+        throw error;
       }
 
       if (!result || typeof result !== "object") {
-        throw new Error("The contact API returned an invalid response. Please try again later.");
+        const error = new Error("The contact API returned an invalid response. Please try again later.");
+        error.status = response.status;
+        throw error;
       }
 
       if (!response.ok || result.ok !== true) {
-        throw new Error(result.error || "Your message could not be sent. Please try again.");
+        const error = new Error(result.error || "Your message could not be sent. Please try again.");
+        error.status = response.status;
+        throw error;
       }
 
       this.form.reset();
       this.status.textContent = "Thanks for reaching out! Your message has been received.";
     } catch (error) {
       this.status.classList.add("is-error");
-      this.status.textContent =
+      const message =
         error.name === "TimeoutError"
           ? "The request timed out. Please check your connection and try again."
           : error instanceof TypeError
-            ? "Couldn't reach the contact service. Start Flask with `python -m backend.app` or check the deployed API connection."
+            ? "Couldn't reach the contact service. Check your connection and try again."
             : error.message;
+      const emailFallback =
+        error.status >= 500 || error.name === "TimeoutError" || error instanceof TypeError;
+
+      if (emailFallback) {
+        const emailLink = document.createElement("a");
+        const emailBody = [
+          `Name: ${payload.name}`,
+          `Reply email: ${payload.email}`,
+          "",
+          payload.message,
+        ].join("\n");
+        emailLink.href =
+          `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(emailBody)}`;
+        emailLink.textContent = "Email me instead";
+        this.status.replaceChildren(document.createTextNode(`${message} `), emailLink);
+      } else {
+        this.status.textContent = message;
+      }
     } finally {
       this.setLoading(false);
     }

@@ -1566,6 +1566,25 @@ h2 > span {
   letter-spacing: -0.07em;
 }
 
+.email-mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  place-items: center;
+  border: 2px solid #e8c86f;
+  background: #394b36;
+  color: #ffe295;
+  font-family: var(--terminal);
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.contact-email strong {
+  overflow-wrap: anywhere;
+  font-size: clamp(0.82rem, 1.45vw, 1.05rem);
+}
+
 .github-stats {
   display: flex;
   min-height: 32px;
@@ -1651,6 +1670,11 @@ h2 > span {
 
 .form-status.is-error {
   color: #ffc0a8;
+}
+
+.form-status.is-error a {
+  color: #ffe295;
+  text-underline-offset: 0.18em;
 }
 
 .honeypot {

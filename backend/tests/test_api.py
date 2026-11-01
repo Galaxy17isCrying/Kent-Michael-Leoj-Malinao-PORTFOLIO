@@ -23,6 +23,11 @@ class InMemoryContactRepository:
         return len(self.messages)
 
 
+class FailingContactRepository:
+    def save(self, _contact: ContactMessage) -> int:
+        raise RuntimeError("database unavailable")
+
+
 class ContactApiTests(unittest.TestCase):
     def setUp(self) -> None:
         self.app = create_app()
@@ -65,6 +70,21 @@ class ContactApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.get_json(), {"ok": True, "id": 1})
         self.assertEqual(self.repository.messages[0].name, "Alex")
+
+    def test_database_failure_returns_temporary_unavailable_response(self) -> None:
+        self.app.config["CONTACT_SERVICE"] = ContactService(FailingContactRepository())
+
+        with self.assertLogs(self.app.logger, level="ERROR"):
+            response = self.client.post("/api/contact", json=VALID_CONTACT)
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(
+            response.get_json(),
+            {
+                "ok": False,
+                "error": "Messages are temporarily unavailable. Please try again later.",
+            },
+        )
 
     def test_rejects_invalid_email_without_saving(self) -> None:
         payload = {**VALID_CONTACT, "email": "not-an-email"}
