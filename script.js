@@ -35,11 +35,25 @@ class ContactForm {
         body: JSON.stringify(payload),
         signal: AbortSignal.timeout(15000),
       });
+      const responseBody = await response.text();
       let result;
       try {
-        result = await response.json();
+        result = JSON.parse(responseBody);
       } catch {
-        throw new Error("The server returned an invalid response. Please try again later.");
+        const contentType = response.headers.get("content-type") || "";
+        if (response.status === 404 || contentType.includes("text/html")) {
+          throw new Error(
+            "This site returned a web page instead of the contact API. Static hosting does not run Flask; start it with `python -m backend.app` or configure the deployed API route.",
+          );
+        }
+
+        throw new Error(
+          `The contact API returned an unexpected response (HTTP ${response.status}). Check that the Flask API is running.`,
+        );
+      }
+
+      if (!result || typeof result !== "object") {
+        throw new Error("The contact API returned an invalid response. Please try again later.");
       }
 
       if (!response.ok || result.ok !== true) {
@@ -54,7 +68,7 @@ class ContactForm {
         error.name === "TimeoutError"
           ? "The request timed out. Please check your connection and try again."
           : error instanceof TypeError
-            ? "Couldn't reach the contact service. Please try again in a moment."
+            ? "Couldn't reach the contact service. Start Flask with `python -m backend.app` or check the deployed API connection."
             : error.message;
     } finally {
       this.setLoading(false);

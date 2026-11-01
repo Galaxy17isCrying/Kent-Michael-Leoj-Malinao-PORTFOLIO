@@ -37,6 +37,13 @@ class ContactApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get_json(), {"ok": True, "service": "portfolio-api"})
 
+    def test_api_not_found_returns_json(self) -> None:
+        response = self.client.get("/api/missing")
+
+        self.assertEqual(response.status_code, 404)
+        self.assertFalse(response.get_json()["ok"])
+        self.assertTrue(response.get_json()["error"])
+
     def test_serves_portfolio_and_does_not_expose_env(self) -> None:
         homepage = self.client.get("/")
         stylesheet = self.client.get("/styles.css")

@@ -2,7 +2,7 @@ import logging
 import time
 from pathlib import Path
 from flask import Flask, current_app, jsonify, request, send_from_directory
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, HTTPException
 
 from backend.config import PROJECT_ROOT, Settings
 from backend.database import MySQLDatabase
@@ -87,6 +87,12 @@ def create_app() -> Flask:
     @application.errorhandler(413)
     def request_too_large(_error):
         return jsonify({"ok": False, "error": "The request is too large."}), 413
+
+    @application.errorhandler(HTTPException)
+    def handle_http_exception(error: HTTPException):
+        if request.path.startswith("/api/"):
+            return jsonify({"ok": False, "error": error.description}), error.code
+        return error
 
     return application
 
