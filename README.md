@@ -45,7 +45,8 @@ Run the API tests with `python -m unittest backend.tests.test_api` from the proj
 - The project archive links to Weather & Hazard Detection, Discord Bot, and Pokémon Pokédex, with descriptions based on their repository metadata and READMEs.
 - The weather project uses Open-Meteo forecasts and a USGS earthquake feed. Some hazard-map layers contain sample data and are not official emergency alerts.
 - The certificate link opens the Cisco Networking Academy IT Customer Support Basics certificate.
-- The hero photograph is sourced from the [Unsplash image CDN](https://images.unsplash.com/photo-1448375240586-882707db888b) and displayed with CSS pixelation, not a generated image.
+- The forest world background is sourced from the [Unsplash image CDN](https://images.unsplash.com/photo-1448375240586-882707db888b) and displayed with CSS pixelation, not a generated image.
+- The profile portrait and school seals were supplied by the portfolio owner. Project cards use a live-app capture for the weather project, a public repository preview for the Pokédex, and original cover art for the Discord bot because no public bot screenshot is available.
 - Display and arcade typefaces are loaded from Google Fonts: Pixelify Sans for titles, with Nunito Sans for readable body copy and Press Start 2P for restrained game labels. System-font fallbacks are included.
 - Skill logos are local PNGs under `assets/icons/`.
 - Skill-icon source: [Icons8](https://icons8.com/icons). The TeamViewer badge is served from Google's favicon service.

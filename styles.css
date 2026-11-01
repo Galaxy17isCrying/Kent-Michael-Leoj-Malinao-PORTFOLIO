@@ -380,7 +380,7 @@ h2 {
 }
 
 h1 {
-  max-width: 900px;
+  max-width: calc(100% - 340px);
   margin-bottom: 1rem;
   font-size: clamp(3.6rem, 8vw, 7rem);
   letter-spacing: -0.055em;
@@ -405,6 +405,48 @@ h1 > span {
 .hero-copy {
   max-width: 510px;
   margin-bottom: 1.7rem;
+}
+
+.hero-portrait {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: 0;
+  width: clamp(230px, 26vw, 320px);
+  overflow: hidden;
+  border: 7px solid #d5d9b2;
+  background: #273832;
+  box-shadow: 9px 9px 0 rgba(16, 29, 26, 0.6);
+  transform: translateY(-45%);
+}
+
+.hero-portrait > img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 0.817;
+  object-fit: cover;
+  object-position: center 38%;
+  image-rendering: pixelated;
+}
+
+.portrait-caption {
+  display: flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.55rem;
+  background: #263a31;
+  color: #e7e5bc;
+  font-family: var(--terminal);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.portrait-caption > span:first-child {
+  width: 7px;
+  height: 7px;
+  background: #c5ee7a;
+  box-shadow: 2px 2px 0 rgba(16, 29, 26, 0.6);
 }
 
 .hero-actions {
@@ -467,17 +509,13 @@ h1 > span {
 }
 
 .player-avatar {
-  display: grid;
+  flex: 0 0 auto;
   width: 2.5rem;
   height: 2.5rem;
-  place-items: center;
+  overflow: hidden;
   border: 3px solid rgba(31, 50, 37, 0.7);
-  background:
-    linear-gradient(90deg, transparent 45%, rgba(45, 64, 46, 0.25) 46% 54%, transparent 55%),
-    #9cbe77;
-  color: #273a2c;
-  font-family: var(--pixel);
-  font-size: 1.55rem;
+  object-fit: cover;
+  object-position: center 38%;
 }
 
 .player-panel > span:last-child {
@@ -662,18 +700,18 @@ h2 > span {
 
 .education-icon {
   display: grid;
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 3rem;
+  height: 3rem;
   place-items: center;
-  border: 2px solid #b5ce88;
-  background: #74945d;
-  color: #fff1bb;
-  font-size: 1.2rem;
+  border: 2px solid rgba(228, 235, 202, 0.48);
+  background: #f5f1df;
+  box-shadow: 2px 2px 0 rgba(20, 28, 24, 0.32);
 }
 
-.education-icon--wood {
-  border-color: #c29367;
-  background: #805638;
+.education-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .education-date {
@@ -844,58 +882,34 @@ h2 > span {
   border-bottom: 3px solid rgba(204, 218, 183, 0.2);
 }
 
-.project-art--weather {
-  background: linear-gradient(#64b6cc 0 48%, #9fcb87 48% 72%, #596c4a 72%);
+.project-art--screenshot {
+  background: #17241f;
 }
 
-.weather-sun {
+.project-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 220ms ease;
+}
+
+.project-card:hover .project-screenshot {
+  transform: scale(1.035);
+}
+
+.project-shot-label {
   position: absolute;
-  top: 24px;
-  right: 48px;
-  width: 40px;
-  height: 40px;
-  background: #ffe486;
-  box-shadow: 0 0 28px rgba(255, 227, 137, 0.36);
-}
-
-.weather-cloud {
-  position: absolute;
-  width: 60px;
-  height: 15px;
-  background: rgba(242, 246, 222, 0.9);
-  box-shadow: 15px -13px 0 rgba(242, 246, 222, 0.9), 34px 0 0 rgba(242, 246, 222, 0.9);
-}
-
-.weather-cloud--one {
-  top: 43px;
-  left: 17%;
-}
-
-.weather-cloud--two {
-  top: 80px;
-  left: 48%;
-  transform: scale(0.7);
-}
-
-.weather-mountain {
-  position: absolute;
-  bottom: 40px;
-  left: 23%;
-  width: 128px;
-  height: 70px;
-  background: #687b62;
-  clip-path: polygon(0 100%, 44% 0, 100% 100%);
-  filter: drop-shadow(16px 8px 0 #738363);
-}
-
-.weather-ground {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 34px;
-  border-top: 7px solid #b1d778;
-  background: repeating-linear-gradient(90deg, #73583d 0 33px, #806245 33px 66px);
+  right: 0.65rem;
+  bottom: 0.6rem;
+  max-width: calc(100% - 1.3rem);
+  padding: 0.35rem 0.5rem;
+  border: 1px solid rgba(231, 239, 194, 0.5);
+  background: rgba(18, 30, 26, 0.9);
+  color: #f0e9c2;
+  font-family: var(--terminal);
+  font-size: 0.73rem;
+  letter-spacing: 0.03em;
 }
 
 .project-art--discord {
@@ -940,56 +954,6 @@ h2 > span {
   right: 24%;
   bottom: 26px;
   font-size: 1.35rem;
-}
-
-.project-art--pokedex {
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle, #b85b57 0, #743f4e 48%, #413349 100%);
-}
-
-.pokedex-orbit {
-  position: absolute;
-  width: 112px;
-  height: 112px;
-  border: 1px solid rgba(255, 224, 185, 0.42);
-  border-radius: 50%;
-}
-
-.pokedex-orbit--two {
-  width: 153px;
-  height: 153px;
-  border-style: dashed;
-  opacity: 0.7;
-}
-
-.pokedex-ball {
-  position: relative;
-  width: 74px;
-  height: 74px;
-  overflow: hidden;
-  border: 4px solid #342e31;
-  border-radius: 50%;
-  background: linear-gradient(#ec8e66 0 46%, #332c32 46% 54%, #f1e4ce 54%);
-  box-shadow: 4px 5px 0 rgba(31, 24, 26, 0.36);
-}
-
-.pokedex-ball i {
-  position: absolute;
-  top: calc(50% - 10px);
-  left: calc(50% - 10px);
-  width: 20px;
-  height: 20px;
-  border: 4px solid #352f32;
-  border-radius: 50%;
-  background: #fff3dc;
-}
-
-.pokedex-spark {
-  position: absolute;
-  top: 30px;
-  right: 30%;
-  color: #ffe4a3;
 }
 
 .project-card-content {
@@ -1430,6 +1394,20 @@ h2 > span {
     margin-top: 2rem;
   }
 
+  .hero-portrait {
+    right: 0;
+    width: clamp(165px, 25vw, 205px);
+  }
+
+  h1 {
+    max-width: calc(100% - 205px);
+    font-size: clamp(3.2rem, 7.4vw, 5.2rem);
+  }
+
+  .hero-copy {
+    max-width: min(390px, calc(100% - 175px));
+  }
+
   .section-grid,
   .contact-layout {
     grid-template-columns: 1fr;
@@ -1515,6 +1493,41 @@ h2 > span {
   .hero-copy {
     max-width: 370px;
     font-size: 0.97rem;
+  }
+
+  h1 {
+    max-width: 100%;
+  }
+
+  .hero-portrait {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(42vw, 170px);
+    margin: 1.2rem 0 0 auto;
+    border-width: 4px;
+    transform: none;
+  }
+
+  .pixel-sun {
+    display: none;
+  }
+
+  .portrait-caption {
+    min-height: 1.7rem;
+    gap: 0.3rem;
+    padding: 0.3rem;
+    font-size: 0.68rem;
+  }
+
+  .player-panel {
+    max-width: 100%;
+    gap: 0.55rem;
+    padding: 0.55rem;
+  }
+
+  .player-panel small {
+    font-size: 0.9rem;
   }
 
   .world-caption {
