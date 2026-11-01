@@ -136,22 +136,6 @@ class SectionNavigation {
   }
 }
 
-class IntroductionCurtain {
-  constructor(section) {
-    this.section = section;
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          this.section.classList.add("is-introducing");
-          this.observer.disconnect();
-        }
-      },
-      { threshold: 0.1 },
-    );
-    this.observer.observe(section);
-  }
-}
-
 class WorldExplorer {
   constructor(sections) {
     this.sections = sections;
@@ -329,11 +313,6 @@ class PortfolioApp {
     const worldSections = [...document.querySelectorAll(".world-hero[data-layer], .world-section[data-layer]")];
     if (worldSections.length > 0 && "IntersectionObserver" in window) {
       new WorldExplorer(worldSections);
-    }
-
-    const aboutSection = document.querySelector("#about");
-    if (aboutSection && "IntersectionObserver" in window) {
-      new IntroductionCurtain(aboutSection);
     }
 
     document.querySelectorAll("[data-project-slideshow]").forEach((slideshow) => {
