@@ -1585,6 +1585,17 @@ h2 > span {
   font-size: clamp(0.82rem, 1.45vw, 1.05rem);
 }
 
+.contact-email--featured {
+  min-height: 76px;
+  margin: 0.9rem 0 0.35rem;
+  border-color: #e8c86f;
+  background: #394b36;
+}
+
+.contact-email--featured > span:last-child {
+  color: #ffe295;
+}
+
 .github-stats {
   display: flex;
   min-height: 32px;
