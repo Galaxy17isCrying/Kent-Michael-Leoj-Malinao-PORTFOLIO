@@ -656,6 +656,121 @@ h1 > span {
   background-color: #263d30;
 }
 
+.biome--meadow > .content-wrap {
+  z-index: 2;
+}
+
+.inventory-decorations {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.inventory-ore {
+  width: 4.2rem;
+  height: 3.2rem;
+  grid-template-columns: repeat(4, 0.65rem);
+  grid-template-rows: repeat(3, 0.65rem);
+  gap: 0.12rem;
+  opacity: 0.84;
+}
+
+.inventory-ore--one {
+  top: 17%;
+  left: 4%;
+}
+
+.inventory-ore--two {
+  top: 34%;
+  right: 4%;
+  transform: rotate(12deg);
+}
+
+.inventory-ore--three {
+  top: 52%;
+  left: 5%;
+  transform: rotate(8deg);
+}
+
+.inventory-ore--four {
+  top: 69%;
+  right: 5%;
+  transform: rotate(-8deg);
+}
+
+.inventory-ore--five {
+  top: 84%;
+  left: 4%;
+}
+
+.inventory-ore--six {
+  top: 91%;
+  right: 4%;
+  transform: rotate(10deg);
+}
+
+.ore-vein--diamond {
+  color: #63e3df;
+}
+
+.ore-vein--emerald {
+  color: #53d47a;
+}
+
+.ore-vein--lapis {
+  color: #568ce8;
+}
+
+.ore-vein--gold {
+  color: #f5c64c;
+}
+
+.ore-vein--diamond i:nth-child(2),
+.ore-vein--diamond i:nth-child(5),
+.ore-vein--diamond i:nth-child(6),
+.ore-vein--emerald i:nth-child(2),
+.ore-vein--emerald i:nth-child(5),
+.ore-vein--emerald i:nth-child(6),
+.ore-vein--lapis i:nth-child(2),
+.ore-vein--lapis i:nth-child(5),
+.ore-vein--lapis i:nth-child(6),
+.ore-vein--gold i:nth-child(2),
+.ore-vein--gold i:nth-child(5),
+.ore-vein--gold i:nth-child(6) {
+  background: currentColor;
+  box-shadow: inset 1px 1px rgba(255, 255, 255, 0.28), 0 0 0.35rem currentColor;
+}
+
+.lava-flow {
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+  left: 0;
+  height: 1.15rem;
+  overflow: hidden;
+  border-top: 3px solid #ffc45b;
+  border-bottom: 3px solid #9c3327;
+  background:
+    repeating-linear-gradient(90deg, #f8a53d 0 2.2rem, #ffd36b 2.2rem 2.55rem, #df6331 2.55rem 4.4rem, #ffb84e 4.4rem 5.2rem);
+  box-shadow: 0 -0.5rem 1.2rem rgba(255, 109, 39, 0.28), inset 0 0.18rem #ffe18a;
+}
+
+.lava-flow > span {
+  position: absolute;
+  inset: 0;
+  width: 200%;
+  background: repeating-linear-gradient(90deg, transparent 0 3.8rem, rgba(255, 228, 126, 0.72) 3.8rem 4.15rem, transparent 4.15rem 7rem);
+  animation: lava-current 14s linear infinite;
+}
+
+@keyframes lava-current {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 .biome--cave {
   background-color: #28323a;
 }
@@ -1695,6 +1810,19 @@ h2 > span {
     display: none;
   }
 
+  .inventory-ore {
+    display: none;
+  }
+
+  .lava-flow {
+    bottom: 0.5rem;
+    height: 0.75rem;
+  }
+
+  .lava-flow > span {
+    animation-duration: 22s;
+  }
+
   .site-header {
     min-height: 91px;
     flex-wrap: wrap;
@@ -2034,6 +2162,10 @@ h2 > span {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .lava-flow > span {
+    animation: none;
+  }
+
   *,
   *::before,
   *::after {
