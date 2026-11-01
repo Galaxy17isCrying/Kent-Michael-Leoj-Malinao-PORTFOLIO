@@ -118,7 +118,7 @@ img {
 
 .about-vine-curtain {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   top: 0;
   bottom: 0;
   display: none;
@@ -154,11 +154,13 @@ img {
   18% {
     transform: translate3d(0, 0, 0);
     opacity: 1;
+    visibility: visible;
   }
 
   100% {
     transform: translate3d(-102%, 0, 0);
     opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -167,11 +169,13 @@ img {
   18% {
     transform: translate3d(0, 0, 0);
     opacity: 1;
+    visibility: visible;
   }
 
   100% {
     transform: translate3d(102%, 0, 0);
     opacity: 0;
+    visibility: hidden;
   }
 }
 
