@@ -21,6 +21,8 @@
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="vine-curtain vine-curtain--left" aria-hidden="true"></div>
+    <div class="vine-curtain vine-curtain--right" aria-hidden="true"></div>
 
     <header class="site-header">
       <a class="wordmark" href="#home" aria-label="Kent Michael Leoj Malinao — back to the surface">
@@ -43,7 +45,14 @@
       <span class="depth-coordinate" id="depth-coordinate">Y 64</span>
       <span class="depth-layer" id="depth-layer">Surface</span>
     </aside>
-    <div class="discovery" id="discovery" role="status" aria-live="polite"></div>
+    <div class="achievement-toast" id="discovery" role="status" aria-live="polite" aria-atomic="true">
+      <span class="achievement-icon" aria-hidden="true">★</span>
+      <span class="achievement-copy">
+        <span class="achievement-kicker">Achievement unlocked</span>
+        <span class="achievement-title" id="achievement-title"></span>
+        <span class="achievement-description" id="achievement-description"></span>
+      </span>
+    </div>
     <div class="minecart-journey" id="minecart-journey" aria-hidden="true">
       <span class="minecart-track"></span>
       <span class="minecart">
@@ -95,6 +104,8 @@
       </section>
 
       <section class="world-section biome--stone" id="about" data-layer="Stone">
+        <div class="about-vine-curtain about-vine-curtain--left" aria-hidden="true"></div>
+        <div class="about-vine-curtain about-vine-curtain--right" aria-hidden="true"></div>
         <div class="content-wrap">
           <p class="eyebrow"><span class="layer-number">01</span> STONE LEVEL <span class="eyebrow-divider">/</span> ABOUT THE PLAYER</p>
           <div class="section-grid">
@@ -107,9 +118,10 @@
                 on both the code and the circuits.
               </p>
               <p>
-                I’m learning by building, experimenting with robotics and
-                Arduino, and finding practical ways to solve technology
-                problems.
+                I love learning and discovering new things in the world of
+                technology, whether it’s troubleshooting, hardware, software
+                development, or robotics. I always find ways to make things
+                interesting.
               </p>
               <a class="inline-link" href="#skills">Check my inventory <span aria-hidden="true">↘</span></a>
             </div>

@@ -81,6 +81,100 @@ img {
   transform: translateY(0);
 }
 
+.vine-curtain,
+.about-vine-curtain {
+  background-color: #203b2c;
+  background-image:
+    repeating-linear-gradient(78deg, transparent 0 17px, #6c9e4b 18px 22px, transparent 23px 57px),
+    radial-gradient(ellipse at 28% 24%, #a4ca68 0 34%, transparent 38%);
+  background-size:
+    58px 100%,
+    58px 68px;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.vine-curtain {
+  position: fixed;
+  z-index: 19;
+  top: 0;
+  bottom: 0;
+  width: 51vw;
+  animation: vine-curtain-open 900ms cubic-bezier(0.22, 0.61, 0.36, 1) 180ms both;
+}
+
+.vine-curtain--left {
+  left: 0;
+  border-right: 5px solid #85ad56;
+  transform-origin: left center;
+}
+
+.vine-curtain--right {
+  right: 0;
+  border-left: 5px solid #85ad56;
+  transform-origin: right center;
+  animation-name: vine-curtain-open-right;
+}
+
+.about-vine-curtain {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  display: none;
+  width: 51%;
+}
+
+.about-vine-curtain--left {
+  left: 0;
+  border-right: 5px solid #85ad56;
+  transform-origin: left center;
+}
+
+.about-vine-curtain--right {
+  right: 0;
+  border-left: 5px solid #85ad56;
+  transform-origin: right center;
+}
+
+#about.is-introducing .about-vine-curtain {
+  display: block;
+}
+
+#about.is-introducing .about-vine-curtain--left {
+  animation: vine-curtain-open 900ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+#about.is-introducing .about-vine-curtain--right {
+  animation: vine-curtain-open-right 900ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes vine-curtain-open {
+  0%,
+  18% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(-102%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes vine-curtain-open-right {
+  0%,
+  18% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(102%, 0, 0);
+    opacity: 0;
+  }
+}
+
 .screen-reader-only {
   position: absolute;
   width: 1px;
@@ -1460,9 +1554,9 @@ h2 > span {
 }
 
 .depth-panel {
-  position: fixed;
+  position: absolute;
   z-index: 6;
-  top: 48%;
+  top: 48vh;
   right: 1.3rem;
   display: grid;
   justify-items: center;
@@ -1506,28 +1600,74 @@ h2 > span {
   font-size: 0.97rem;
 }
 
-.discovery {
+.achievement-toast {
   position: fixed;
   z-index: 10;
   top: 6rem;
   right: 2rem;
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.8rem;
   max-width: min(320px, calc(100vw - 3rem));
   padding: 0.85rem 1rem;
   border: 3px solid #e1d69b;
-  background: #314238;
-  box-shadow: 4px 4px 0 rgba(11, 20, 17, 0.55);
+  background:
+    linear-gradient(135deg, rgba(132, 180, 85, 0.16), transparent 58%),
+    #26372e;
+  box-shadow: 4px 4px 0 rgba(11, 20, 17, 0.7), inset 0 0 0 2px rgba(235, 239, 196, 0.08);
   color: #eff0cd;
-  font-family: var(--pixel);
-  font-size: 1.05rem;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-0.5rem);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transform: translateY(-0.75rem) scale(0.96);
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
-.discovery.is-visible {
+.achievement-toast.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+}
+
+.achievement-icon {
+  display: grid;
+  width: 2.6rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 2px solid #f5d477;
+  background: #435735;
+  box-shadow: 2px 2px 0 #18251e;
+  color: #ffe28c;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.achievement-copy {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.achievement-kicker,
+.achievement-title {
+  font-family: var(--terminal);
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+}
+
+.achievement-kicker {
+  color: #d7ed9f;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.achievement-title {
+  color: #fff1bd;
+  font-size: 1.3rem;
+}
+
+.achievement-description {
+  color: #d0d6bf;
+  font-size: 0.84rem;
+  line-height: 1.4;
 }
 
 .site-footer {
@@ -1641,17 +1781,7 @@ h2 > span {
   }
 
   .depth-panel {
-    right: 0.4rem;
-  }
-
-  .depth-track {
-    height: 90px;
-  }
-
-  .depth-label,
-  .depth-coordinate,
-  .depth-layer {
-    font-size: 0.85rem;
+    display: none;
   }
 }
 
@@ -1905,6 +2035,11 @@ h2 > span {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .vine-curtain,
+  .about-vine-curtain {
+    display: none;
+  }
+
   *,
   *::before,
   *::after {

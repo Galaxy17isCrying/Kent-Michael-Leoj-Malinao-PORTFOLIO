@@ -1,3 +1,11 @@
+const SECTION_ACHIEVEMENTS = {
+  about: ["First Steps", "You entered the Stone biome."],
+  skills: ["Full Inventory", "You explored the tools in your loadout."],
+  projects: ["Builder's Guild", "You discovered the project cavern."],
+  certifications: ["Treasure Hunter", "You found the certificate loot."],
+  contact: ["Reached Bedrock", "You made it to the deepest layer. Say hello!"],
+};
+
 class ContactForm {
   constructor(form) {
     this.form = form;
@@ -128,6 +136,22 @@ class SectionNavigation {
   }
 }
 
+class IntroductionCurtain {
+  constructor(section) {
+    this.section = section;
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          this.section.classList.add("is-introducing");
+          this.observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    this.observer.observe(section);
+  }
+}
+
 class WorldExplorer {
   constructor(sections) {
     this.sections = sections;
@@ -137,6 +161,8 @@ class WorldExplorer {
     this.depthLayer = document.querySelector("#depth-layer");
     this.depthFill = document.querySelector(".depth-fill");
     this.discovery = document.querySelector("#discovery");
+    this.achievementTitle = document.querySelector("#achievement-title");
+    this.achievementDescription = document.querySelector("#achievement-description");
     this.discoveryTimeout = null;
     this.onScroll = () => this.updateDepth();
 
@@ -168,17 +194,22 @@ class WorldExplorer {
     this.activeSection = section;
     this.depthLayer.textContent = section.dataset.layer;
 
-    if (!notify || this.discovered.has(section.id)) {
+    if (!notify || section.id === "home" || this.discovered.has(section.id)) {
       return;
     }
 
     this.discovered.add(section.id);
-    this.discovery.textContent = `Area discovered: ${section.dataset.layer}`;
+    const [title, description] = SECTION_ACHIEVEMENTS[section.id] ?? [
+      `${section.dataset.layer} Discovered`,
+      "You uncovered a new area.",
+    ];
+    this.achievementTitle.textContent = title;
+    this.achievementDescription.textContent = description;
     this.discovery.classList.add("is-visible");
     window.clearTimeout(this.discoveryTimeout);
     this.discoveryTimeout = window.setTimeout(() => {
       this.discovery.classList.remove("is-visible");
-    }, 2200);
+    }, 3400);
   }
 
   updateDepth() {
@@ -298,6 +329,11 @@ class PortfolioApp {
     const worldSections = [...document.querySelectorAll(".world-hero[data-layer], .world-section[data-layer]")];
     if (worldSections.length > 0 && "IntersectionObserver" in window) {
       new WorldExplorer(worldSections);
+    }
+
+    const aboutSection = document.querySelector("#about");
+    if (aboutSection && "IntersectionObserver" in window) {
+      new IntroductionCurtain(aboutSection);
     }
 
     document.querySelectorAll("[data-project-slideshow]").forEach((slideshow) => {
