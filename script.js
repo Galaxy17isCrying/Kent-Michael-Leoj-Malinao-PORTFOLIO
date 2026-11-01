@@ -225,6 +225,54 @@ class DiscordProjectSlideshow {
   }
 }
 
+class MinecartContactJourney {
+  constructor(links, contact, ride, status) {
+    this.links = links;
+    this.contact = contact;
+    this.heading = contact.querySelector("#contact-title");
+    this.ride = ride;
+    this.status = status;
+    this.isTraveling = false;
+    this.prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    links.forEach((link) => {
+      link.addEventListener("click", (event) => this.start(event));
+    });
+  }
+
+  start(event) {
+    event.preventDefault();
+    if (this.isTraveling) {
+      return;
+    }
+
+    this.isTraveling = true;
+    this.status.textContent = this.prefersReducedMotion.matches
+      ? "Opening the contact section."
+      : "Minecart departing for the contact section.";
+
+    if (this.prefersReducedMotion.matches) {
+      this.arrive();
+      return;
+    }
+
+    this.ride.classList.add("is-moving");
+    window.setTimeout(() => this.arrive(), 1550);
+  }
+
+  arrive() {
+    this.ride.classList.remove("is-moving");
+    window.history.pushState(null, "", "#contact");
+    this.contact.scrollIntoView({
+      behavior: this.prefersReducedMotion.matches ? "instant" : "smooth",
+      block: "start",
+    });
+    this.heading.focus({ preventScroll: true });
+    this.status.textContent = "Arrived. The contact form and profiles are ready below.";
+    this.isTraveling = false;
+  }
+}
+
 class PortfolioApp {
   constructor() {
     const contactForm = document.querySelector("#contact-form");
@@ -255,6 +303,14 @@ class PortfolioApp {
     document.querySelectorAll("[data-project-slideshow]").forEach((slideshow) => {
       new DiscordProjectSlideshow(slideshow);
     });
+
+    const contactLinks = [...document.querySelectorAll("[data-contact-journey]")];
+    const contactSection = document.querySelector("#contact");
+    const minecartRide = document.querySelector("#minecart-journey");
+    const journeyStatus = document.querySelector("#journey-status");
+    if (contactLinks.length > 0 && contactSection && minecartRide && journeyStatus) {
+      new MinecartContactJourney(contactLinks, contactSection, minecartRide, journeyStatus);
+    }
   }
 }
 

@@ -81,6 +81,16 @@ img {
   transform: translateY(0);
 }
 
+.screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
 .content-wrap {
   position: relative;
   z-index: 2;
@@ -335,6 +345,109 @@ img {
   right: 16%;
   top: 5.1rem;
   transform: scale(0.76);
+}
+
+.minecart-journey {
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  left: 0;
+  display: none;
+  height: 6rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.minecart-journey.is-moving {
+  display: block;
+}
+
+.minecart-track {
+  position: absolute;
+  right: 0;
+  bottom: 1.2rem;
+  left: 0;
+  height: 8px;
+  border-top: 3px solid #d5d9b2;
+  background: repeating-linear-gradient(90deg, #8b6945 0 24px, #b18b5f 24px 29px);
+  box-shadow: 0 -3px 0 rgba(26, 34, 29, 0.6);
+}
+
+.minecart {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 0;
+  width: 5.5rem;
+  height: 3.8rem;
+  animation: minecart-travel 1.55s cubic-bezier(0.36, 0.05, 0.65, 1) both;
+}
+
+.minecart > img {
+  position: absolute;
+  z-index: 1;
+  bottom: 1.65rem;
+  left: 1.05rem;
+  width: 2rem;
+  height: 2.15rem;
+  border: 3px solid #293931;
+  background: #e5dfb8;
+  object-fit: cover;
+  object-position: center 24%;
+  image-rendering: pixelated;
+}
+
+.minecart-body {
+  position: absolute;
+  z-index: 2;
+  right: 0.25rem;
+  bottom: 0.55rem;
+  left: 0.25rem;
+  height: 1.55rem;
+  border: 4px solid #493729;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 15px, rgba(28, 33, 28, 0.3) 15px 19px),
+    #986d43;
+  box-shadow: inset 0 4px #c09259, 3px 3px 0 rgba(16, 24, 21, 0.55);
+}
+
+.minecart-wheel {
+  position: absolute;
+  z-index: 3;
+  bottom: 0.05rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 3px solid #d7ce9e;
+  background: #35413a;
+  animation: minecart-wheel-spin 360ms linear infinite;
+}
+
+.minecart-wheel--left {
+  left: 0.7rem;
+}
+
+.minecart-wheel--right {
+  right: 0.7rem;
+}
+
+@keyframes minecart-travel {
+  from {
+    transform: translate3d(-7rem, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(50vw, -0.35rem, 0);
+  }
+
+  to {
+    transform: translate3d(calc(100vw + 7rem), 0, 0);
+  }
+}
+
+@keyframes minecart-wheel-spin {
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 .world-content {
@@ -1574,6 +1687,10 @@ h2 > span {
     min-height: max(735px, 100svh);
     padding-top: 120px;
     padding-bottom: 188px;
+  }
+
+  .minecart-journey {
+    bottom: max(1rem, env(safe-area-inset-bottom));
   }
 
   .world-color-wash {

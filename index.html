@@ -34,7 +34,7 @@
         <a href="#projects">Projects</a>
         <a href="#certifications">Achievements</a>
       </nav>
-      <a class="header-cta" href="#contact">Contact me <span aria-hidden="true">↗</span></a>
+      <a class="header-cta" href="#contact" data-contact-journey>Contact me <span aria-hidden="true">↗</span></a>
     </header>
 
     <aside class="depth-panel" aria-label="World exploration progress">
@@ -44,6 +44,16 @@
       <span class="depth-layer" id="depth-layer">Surface</span>
     </aside>
     <div class="discovery" id="discovery" role="status" aria-live="polite"></div>
+    <div class="minecart-journey" id="minecart-journey" aria-hidden="true">
+      <span class="minecart-track"></span>
+      <span class="minecart">
+        <img src="/assets/images/kent-profile.webp" alt="" width="44" height="48">
+        <span class="minecart-body"></span>
+        <i class="minecart-wheel minecart-wheel--left"></i>
+        <i class="minecart-wheel minecart-wheel--right"></i>
+      </span>
+    </div>
+    <p class="screen-reader-only" id="journey-status" role="status" aria-live="polite" aria-atomic="true"></p>
 
     <main id="main">
       <section class="world-hero" id="home" data-layer="Surface" aria-labelledby="hero-title">
@@ -72,7 +82,7 @@
             worlds where code meets hardware.
           </p>
           <div class="hero-actions">
-            <a class="button button--primary" href="#contact">Contact me <span aria-hidden="true">↗</span></a>
+            <a class="button button--primary" href="#contact" data-contact-journey>Contact me <span aria-hidden="true">↗</span></a>
             <a class="button button--quiet" href="#about">Start exploring <span aria-hidden="true">↓</span></a>
           </div>
           <div class="hero-portrait">
@@ -265,13 +275,16 @@
           <p class="eyebrow"><span class="layer-number">04</span> ACHIEVEMENTS <span class="eyebrow-divider">/</span> CERTIFICATIONS</p>
           <h2>A skill <span>unlocked.</span></h2>
           <p class="section-intro">Learning is part of the adventure. Here’s a certificate you shared.</p>
-          <article class="certificate-card">
-            <span class="certificate-emblem" aria-hidden="true">✦<small>UNLOCKED</small></span>
+          <article class="certificate-card certificate-card--featured">
+            <a class="certificate-preview" href="/assets/certificates/Malinao_Certificate_ITsupport.pdf" target="_blank" rel="noopener noreferrer" aria-label="View the full Cisco IT Customer Support Basics certificate PDF">
+              <img src="/assets/certificates/cisco-it-support-preview.webp" alt="Cisco Networking Academy certificate awarded to Kent Michael Leoj Malinao for IT Customer Support Basics on October 31, 2026." width="835" height="647" loading="lazy">
+              <span>VIEW FULL CERTIFICATE <span aria-hidden="true">↗</span></span>
+            </a>
             <div class="certificate-details">
               <p class="certificate-issuer">CISCO NETWORKING ACADEMY</p>
               <h3>IT Customer Support Basics</h3>
               <p>Certificate of Course Completion <span aria-hidden="true">·</span> October 31, 2026</p>
-              <a class="inline-link" href="/assets/certificates/Malinao_Certificate_ITsupport.pdf" target="_blank" rel="noopener noreferrer">Inspect certificate <span aria-hidden="true">↗</span></a>
+              <a class="inline-link" href="/assets/certificates/Malinao_Certificate_ITsupport.pdf" target="_blank" rel="noopener noreferrer">Open certificate PDF <span aria-hidden="true">↗</span></a>
             </div>
           </article>
           <article class="certificate-card certificate-card--featured">
@@ -293,7 +306,7 @@
         <div class="content-wrap contact-layout">
           <div class="contact-copy">
             <p class="eyebrow"><span class="layer-number">05</span> BEDROCK <span class="eyebrow-divider">/</span> CONTACT</p>
-            <h2>Let’s make<br><span>something great.</span></h2>
+            <h2 id="contact-title" tabindex="-1">Let’s make<br><span>something great.</span></h2>
             <p>Have an idea, opportunity, or question? Drop me a message or find me on GitHub.</p>
             <a class="contact-github" href="https://github.com/Galaxy17isCrying" target="_blank" rel="noopener noreferrer">
               <img src="/assets/icons/github.png" alt="" width="30" height="30" loading="lazy">
