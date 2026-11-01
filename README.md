@@ -27,16 +27,16 @@ A playful, pixel-inspired portfolio with an image-based, pixelated game-world ba
 
 6. Visit `http://127.0.0.1:5000`. Check `http://127.0.0.1:5000/api/health` to verify the API is running.
 
-You can also open `index.html` directly for a visual preview; local styles and images use relative paths. The contact form requires the Flask server above. Static hosts such as GitHub Pages cannot run the Flask API; deploy the backend separately and route the site's `/api/contact` requests to it.
+You can also open `index.html` directly for a visual preview; local styles and images use relative paths. The contact composer works without Flask or MySQL: it opens the visitor's email app with the message filled in. The visitor reviews and sends it from that app.
 
-The contact form submits to `POST /api/contact`. The server validates input, applies a five-message-per-hour per-IP limit, and stores valid messages using parameterized MySQL queries. If MySQL is unavailable, the form displays an error and provides a prefilled email fallback rather than claiming the message was sent. The contact section also has a direct email link.
+The optional `POST /api/contact` endpoint validates input, applies a five-message-per-hour per-IP limit, and stores valid messages using parameterized MySQL queries. It is not required by the portfolio's contact composer. The contact section also has a direct email link.
 
 ## APIs
 
 - **Portfolio contact API:** Flask provides the first-party `POST /api/contact` endpoint and stores messages in MySQL.
 - **GitHub REST API:** The profile card reads public repository and follower counts from GitHub's public profile endpoint. It uses no token or private credentials and has a graceful fallback when GitHub is unavailable.
 
-For a Vercel deployment, configure `MYSQL_HOST`, `MYSQL_PORT`, `MYSQL_DATABASE`, `MYSQL_USER`, and `MYSQL_PASSWORD` using credentials from a reachable hosted MySQL provider. The local `.env` file is not deployed.
+To use the optional API on Vercel, configure `MYSQL_HOST`, `MYSQL_PORT`, `MYSQL_DATABASE`, `MYSQL_USER`, and `MYSQL_PASSWORD` using credentials from a reachable hosted MySQL provider. The local `.env` file is not deployed. The email-based contact composer requires no database configuration.
 
 The contact rate limiter is process-local, intended for a single-instance portfolio. A production deployment with multiple server instances should use a shared rate-limit store and an appropriately configured reverse proxy.
 

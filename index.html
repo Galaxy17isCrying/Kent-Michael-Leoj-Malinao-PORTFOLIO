@@ -354,12 +354,13 @@
             </a>
           </div>
           <form class="contact-form" id="contact-form">
+            <h3 class="contact-form-title">Send me a note</h3>
+            <p class="contact-form-hint">This opens your email app with the message filled in. Review it and press Send there.</p>
             <label><span>Your name</span><input name="name" type="text" autocomplete="name" maxlength="100" placeholder="How should I address you?" required></label>
             <label><span>Email address</span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></label>
             <label><span>Subject</span><input name="subject" type="text" maxlength="150" placeholder="What would you like to discuss?" required></label>
             <label><span>Message</span><textarea name="message" rows="5" maxlength="5000" placeholder="Tell me a little about it…" required></textarea></label>
-            <div class="honeypot" aria-hidden="true"><label for="contact-website">Leave this field empty</label><input id="contact-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
-            <button class="button button--primary contact-submit" type="submit"><span class="submit-label">Send message</span><span aria-hidden="true">↗</span></button>
+            <button class="button button--primary contact-submit" type="submit">Open email app <span aria-hidden="true">↗</span></button>
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>

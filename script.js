@@ -8,105 +8,40 @@ const SECTION_ACHIEVEMENTS = {
 
 const CONTACT_EMAIL = "kentmichaelleojmalinao@gmail.com";
 
-class ContactForm {
+class ContactEmailComposer {
   constructor(form) {
     this.form = form;
-    this.submitButton = form.querySelector('button[type="submit"]');
-    this.submitLabel = form.querySelector(".submit-label");
     this.status = document.querySelector("#form-status");
     form.addEventListener("submit", (event) => this.submit(event));
   }
 
-  async submit(event) {
+  submit(event) {
     event.preventDefault();
-    this.status.textContent = "";
-    this.status.classList.remove("is-error");
 
     if (!this.form.reportValidity()) {
       return;
     }
 
     const formData = new FormData(this.form);
-    const payload = Object.fromEntries(formData.entries());
-    this.setLoading(true);
+    const subject = String(formData.get("subject"));
+    const body = [
+      `Name: ${formData.get("name")}`,
+      `Reply email: ${formData.get("email")}`,
+      "",
+      formData.get("message"),
+    ].join("\n");
+    const emailHref =
+      `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const emailLink = document.createElement("a");
+    emailLink.href = emailHref;
+    emailLink.textContent = "click here";
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        signal: AbortSignal.timeout(15000),
-      });
-      const responseBody = await response.text();
-      let result;
-      try {
-        result = JSON.parse(responseBody);
-      } catch {
-        const contentType = response.headers.get("content-type") || "";
-        if (response.status === 404 || contentType.includes("text/html")) {
-          const error = new Error(
-            "This site returned a web page instead of the contact API. Static hosting does not run Flask; start it with `python -m backend.app` or configure the deployed API route.",
-          );
-          error.status = response.status;
-          throw error;
-        }
-
-        const error = new Error(
-          `The contact API returned an unexpected response (HTTP ${response.status}). Check that the Flask API is running.`,
-        );
-        error.status = response.status;
-        throw error;
-      }
-
-      if (!result || typeof result !== "object") {
-        const error = new Error("The contact API returned an invalid response. Please try again later.");
-        error.status = response.status;
-        throw error;
-      }
-
-      if (!response.ok || result.ok !== true) {
-        const error = new Error(result.error || "Your message could not be sent. Please try again.");
-        error.status = response.status;
-        throw error;
-      }
-
-      this.form.reset();
-      this.status.textContent = "Thanks for reaching out! Your message has been received.";
-    } catch (error) {
-      this.status.classList.add("is-error");
-      const message =
-        error.name === "TimeoutError"
-          ? "The request timed out. Please check your connection and try again."
-          : error instanceof TypeError
-            ? "Couldn't reach the contact service. Check your connection and try again."
-            : error.message;
-      const emailFallback =
-        error.status >= 500 || error.name === "TimeoutError" || error instanceof TypeError;
-
-      if (emailFallback) {
-        const emailLink = document.createElement("a");
-        const emailBody = [
-          `Name: ${payload.name}`,
-          `Reply email: ${payload.email}`,
-          "",
-          payload.message,
-        ].join("\n");
-        emailLink.href =
-          `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(emailBody)}`;
-        emailLink.textContent = "Email me instead";
-        this.status.replaceChildren(document.createTextNode(`${message} `), emailLink);
-      } else {
-        this.status.textContent = message;
-      }
-    } finally {
-      this.setLoading(false);
-    }
-  }
-
-  setLoading(isLoading) {
-    this.submitButton.disabled = isLoading;
-    this.submitButton.setAttribute("aria-busy", String(isLoading));
-    this.submitLabel.textContent = isLoading ? "Sending…" : "Send message";
+    this.status.replaceChildren(
+      document.createTextNode("Your email app should open with your message. Review it and press Send there. If it doesn’t open, "),
+      emailLink,
+      document.createTextNode("."),
+    );
+    window.location.href = emailHref;
   }
 }
 
@@ -325,7 +260,7 @@ class MinecartContactJourney {
       block: "start",
     });
     this.heading.focus({ preventScroll: true });
-    this.status.textContent = "Arrived. The contact form and profiles are ready below.";
+    this.status.textContent = "Arrived. The message composer and profiles are ready below.";
     this.isTraveling = false;
   }
 }
@@ -334,7 +269,7 @@ class PortfolioApp {
   constructor() {
     const contactForm = document.querySelector("#contact-form");
     if (contactForm) {
-      new ContactForm(contactForm);
+      new ContactEmailComposer(contactForm);
     }
 
     const githubStatus = document.querySelector("#github-stats-text");
