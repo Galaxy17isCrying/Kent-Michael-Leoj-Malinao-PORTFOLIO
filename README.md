@@ -42,7 +42,8 @@ Run the API tests with `python -m unittest backend.tests.test_api` from the proj
 
 - The education entries and skills reflect information provided by Kent. Robotics is marked proficient as requested; other skills have no inferred proficiency ratings.
 - The interface uses an original, sandbox-game-inspired design with blocky ground, pixel clouds, and arcade-style buttons; it does not use Minecraft or Terraria artwork.
-- The project archive links to Weather & Hazard Detection, Discord Bot, and Pokémon Pokédex, with descriptions based on their repository metadata and READMEs.
+- The project archive links to Weather & Hazard Detection, Discord Bot, and Pokémon Pokédex. The Discord Bot card includes a keyboard-accessible slideshow of owner-supplied bot, music, and command screenshots, plus its Python, Discord, game, music, and AI-chat features.
+- The contact section links to Kent’s GitHub and LinkedIn profiles.
 - The weather project uses Open-Meteo forecasts and a USGS earthquake feed. Some hazard-map layers contain sample data and are not official emergency alerts.
 - The certificates section links to the Cisco Networking Academy IT Customer Support Basics certificate and includes a viewable freeCodeCamp Python Developer Certification with an official verification link.
 - The forest world background is sourced from the [Unsplash image CDN](https://images.unsplash.com/photo-1448375240586-882707db888b) and displayed with CSS pixelation, not a generated image.

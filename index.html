@@ -201,19 +201,38 @@
               </div>
             </article>
             <article class="project-card project-card--discord">
-              <div class="project-art project-art--discord" aria-hidden="true">
-                <span class="discord-orbit"></span>
-                <span class="discord-mark">D</span>
-                <span class="discord-spark discord-spark--one">✦</span>
-                <span class="discord-spark discord-spark--two">✦</span>
-                <span class="project-shot-label">PROJECT COVER ART</span>
+              <div class="discord-carousel" data-project-slideshow role="region" aria-label="The Game Bot screenshots" aria-roledescription="carousel">
+                <div class="discord-carousel__slides">
+                  <figure class="discord-slide" data-slide role="group" aria-roledescription="slide" aria-label="1 of 3: Bot profile" aria-hidden="false">
+                    <img src="/assets/images/projects/discord-bot-profile.webp" alt="The Game Bot Discord profile, showing the app badge, developer, and bot description." width="377" height="657" loading="eager">
+                    <figcaption>Bot profile <span>Meet The Game Bot</span></figcaption>
+                  </figure>
+                  <figure class="discord-slide" data-slide role="group" aria-roledescription="slide" aria-label="2 of 3: Music controls" aria-hidden="true" hidden>
+                    <img src="/assets/images/projects/discord-bot-music.webp" alt="The Game Bot playing a song in Discord with lyrics, pause, skip, queue, and add-song controls." width="738" height="270" loading="eager">
+                    <figcaption>Music controls <span>Playback, queue, and song controls</span></figcaption>
+                  </figure>
+                  <figure class="discord-slide" data-slide role="group" aria-roledescription="slide" aria-label="3 of 3: Game and chat commands" aria-hidden="true" hidden>
+                    <img src="/assets/images/projects/discord-bot-commands.webp" alt="Discord message listing The Game Bot commands for mini-games, music, and local AI chat." width="560" height="383" loading="eager">
+                    <figcaption>Games &amp; chat <span>Mini-games, music, and AI chat commands</span></figcaption>
+                  </figure>
+                </div>
+                <div class="discord-carousel__controls" aria-label="Slideshow controls">
+                  <button class="discord-carousel__arrow" type="button" data-slide-direction="-1" aria-label="Previous Discord bot screenshot">‹</button>
+                  <div class="discord-carousel__dots" role="group" aria-label="Choose a Discord bot screenshot">
+                    <button class="discord-carousel__dot" type="button" data-slide-index="0" aria-label="Show screenshot 1: Bot profile" aria-current="true"></button>
+                    <button class="discord-carousel__dot" type="button" data-slide-index="1" aria-label="Show screenshot 2: Music controls"></button>
+                    <button class="discord-carousel__dot" type="button" data-slide-index="2" aria-label="Show screenshot 3: Game and chat commands"></button>
+                  </div>
+                  <span class="discord-carousel__count" data-slide-status aria-live="polite" aria-atomic="true">1 / 3 — Bot profile</span>
+                  <button class="discord-carousel__arrow" type="button" data-slide-direction="1" aria-label="Next Discord bot screenshot">›</button>
+                </div>
               </div>
               <div class="project-card-content">
                 <p class="chest-label">BOT AUTOMATION <span aria-hidden="true">·</span> 002</p>
                 <h3>Discord Bot</h3>
-                <p>A Python Discord bot built with discord.py. No public bot screenshot is available, so this card uses original cover art. Visit the repository to explore the source code and bot setup.</p>
+                <p>A Python Discord bot with mini-games, music playback and queue controls, plus local AI chat commands.</p>
                 <ul class="project-tags" aria-label="Project categories">
-                  <li>Python</li><li>discord.py</li><li>Bot</li>
+                  <li>Python</li><li>discord.py</li><li>Mini-games</li><li>Music</li><li>AI chat</li>
                 </ul>
                 <div class="project-links">
                   <a href="https://github.com/Galaxy17isCrying/discord-bot" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
@@ -282,6 +301,11 @@
               <span aria-hidden="true">↗</span>
             </a>
             <div class="github-stats" id="github-stats" role="status" aria-live="polite"><span class="github-indicator" aria-hidden="true"></span><span id="github-stats-text">Checking GitHub…</span></div>
+            <a class="contact-github contact-linkedin" href="https://www.linkedin.com/in/kent-michael-leoj-malinao-649141442/" target="_blank" rel="noopener noreferrer">
+              <span class="linkedin-mark" aria-hidden="true">in</span>
+              <span><small>PROFESSIONAL PROFILE</small><strong>Connect on LinkedIn</strong></span>
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
           <form class="contact-form" id="contact-form">
             <label><span>Your name</span><input name="name" type="text" autocomplete="name" maxlength="100" placeholder="How should I address you?" required></label>

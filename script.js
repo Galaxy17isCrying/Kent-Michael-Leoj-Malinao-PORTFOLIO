@@ -189,6 +189,42 @@ class WorldExplorer {
   }
 }
 
+class DiscordProjectSlideshow {
+  constructor(container) {
+    this.slides = [...container.querySelectorAll("[data-slide]")];
+    this.dots = [...container.querySelectorAll("[data-slide-index]")];
+    this.status = container.querySelector("[data-slide-status]");
+    this.activeIndex = 0;
+
+    container.querySelectorAll("[data-slide-direction]").forEach((button) => {
+      button.addEventListener("click", () => {
+        this.show(this.activeIndex + Number(button.dataset.slideDirection));
+      });
+    });
+
+    this.dots.forEach((button) => {
+      button.addEventListener("click", () => {
+        this.show(Number(button.dataset.slideIndex));
+      });
+    });
+
+    this.show(this.activeIndex);
+  }
+
+  show(index) {
+    this.activeIndex = (index + this.slides.length) % this.slides.length;
+    this.slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === this.activeIndex;
+      slide.hidden = !isActive;
+      slide.setAttribute("aria-hidden", String(!isActive));
+      this.dots[slideIndex].setAttribute("aria-current", String(isActive));
+    });
+
+    const slideName = this.slides[this.activeIndex].getAttribute("aria-label").replace(/^\d+ of \d+: /, "");
+    this.status.textContent = `${this.activeIndex + 1} / ${this.slides.length} — ${slideName}`;
+  }
+}
+
 class PortfolioApp {
   constructor() {
     const contactForm = document.querySelector("#contact-form");
@@ -215,6 +251,10 @@ class PortfolioApp {
     if (worldSections.length > 0 && "IntersectionObserver" in window) {
       new WorldExplorer(worldSections);
     }
+
+    document.querySelectorAll("[data-project-slideshow]").forEach((slideshow) => {
+      new DiscordProjectSlideshow(slideshow);
+    });
   }
 }
 
