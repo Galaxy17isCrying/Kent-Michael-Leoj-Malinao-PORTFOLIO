@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#183c37">
+    <meta
+      name="description"
+      content="Meet Kent Malinao: an IT student exploring programming, robotics, hardware, and IT support."
+    >
+    <title>Kent Malinao — A little world of code</title>
+    <link rel="icon" href="/assets/icons/robot.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="#home" aria-label="Kent Malinao — back to the surface">
+        <span class="wordmark-cube" aria-hidden="true"></span>
+        <span>KENT<span class="wordmark-accent">.WORLD</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Inventory</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Achievements</a>
+      </nav>
+      <a class="header-cta" href="#contact">Contact me <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <aside class="depth-panel" aria-label="World exploration progress">
+      <span class="depth-label">WORLD</span>
+      <div class="depth-track" aria-hidden="true"><span class="depth-fill"></span></div>
+      <span class="depth-coordinate" id="depth-coordinate">Y 64</span>
+      <span class="depth-layer" id="depth-layer">Surface</span>
+    </aside>
+    <div class="discovery" id="discovery" role="status" aria-live="polite"></div>
+
+    <main id="main">
+      <section class="world-hero" id="home" data-layer="Surface" aria-labelledby="hero-title">
+        <img
+          class="world-background"
+          src="/assets/images/game-world.jpg"
+          alt=""
+          fetchpriority="high"
+        >
+        <div class="world-color-wash" aria-hidden="true"></div>
+        <div class="pixel-cloud pixel-cloud--one" aria-hidden="true"></div>
+        <div class="pixel-cloud pixel-cloud--two" aria-hidden="true"></div>
+        <div class="pixel-sun" aria-hidden="true"></div>
+        <div class="pixel-mountains" aria-hidden="true"></div>
+        <div class="world-ground" aria-hidden="true">
+          <div class="world-grass"></div>
+          <div class="world-dirt"></div>
+          <span class="ground-stone ground-stone--one"></span>
+          <span class="ground-stone ground-stone--two"></span>
+        </div>
+        <div class="world-content content-wrap">
+          <p class="eyebrow"><span class="status-dot"></span> NEW WORLD <span class="eyebrow-divider">/</span> PLAYER PROFILE</p>
+          <h1 id="hero-title">Hi, I’m Kent.<br><span>Let’s build<br>something cool.</span></h1>
+          <p class="hero-copy">
+            IT student, programmer, and robotics enthusiast. Exploring the
+            worlds where code meets hardware.
+          </p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#contact">Contact me <span aria-hidden="true">↗</span></a>
+            <a class="button button--quiet" href="#about">Start exploring <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="player-panel" aria-label="Player status">
+            <span class="player-avatar" aria-hidden="true">K</span>
+            <span><small>PLAYER STATUS</small><strong>IT student <span aria-hidden="true">·</span> builder in progress</strong></span>
+          </div>
+        </div>
+        <div class="world-caption" aria-hidden="true"><span class="caption-dot"></span> THE ADVENTURE STARTS HERE</div>
+      </section>
+
+      <section class="world-section biome--stone" id="about" data-layer="Stone">
+        <div class="content-wrap">
+          <p class="eyebrow"><span class="layer-number">01</span> STONE LEVEL <span class="eyebrow-divider">/</span> ABOUT THE PLAYER</p>
+          <div class="section-grid">
+            <div class="section-heading">
+              <h2>Curious mind.<br><span>Hands-on spirit.</span></h2>
+            </div>
+            <div class="section-copy">
+              <p class="lead">
+                I’m Kent Michael Leoj Malinao, an IT student who likes working
+                on both the code and the circuits.
+              </p>
+              <p>
+                I’m learning by building, experimenting with robotics and
+                Arduino, and finding practical ways to solve technology
+                problems.
+              </p>
+              <a class="inline-link" href="#skills">Check my inventory <span aria-hidden="true">↘</span></a>
+            </div>
+          </div>
+
+          <div class="education" id="education">
+            <div class="subheading-row">
+              <h3>Education</h3>
+              <span>QUEST LOG <span aria-hidden="true">/</span> 02</span>
+            </div>
+            <article class="education-card">
+              <span class="education-icon" aria-hidden="true">✦</span>
+              <div class="education-date">2024 <span>— PRESENT</span></div>
+              <div class="education-details">
+                <h4>Technological University of the Philippines</h4>
+                <p>Bachelor of Science in Information Technology (BSIT)</p>
+              </div>
+              <span class="education-state"><i></i> Current</span>
+            </article>
+            <article class="education-card">
+              <span class="education-icon education-icon--wood" aria-hidden="true">✦</span>
+              <div class="education-date">2022 <span>— 2024</span></div>
+              <div class="education-details">
+                <h4>Jose Rizal University</h4>
+                <p>Senior High School <span aria-hidden="true">·</span> STEM</p>
+              </div>
+              <span class="education-state">Completed</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="world-section biome--meadow" id="skills" data-layer="Meadow">
+        <div class="content-wrap">
+          <p class="eyebrow"><span class="layer-number">02</span> YOUR INVENTORY <span class="eyebrow-divider">/</span> SKILLS &amp; TOOLS</p>
+          <div class="section-title-row">
+            <h2>My current <span>loadout.</span></h2>
+            <span class="section-count">17 ITEMS COLLECTED</span>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-heading"><h3><span aria-hidden="true">▰</span> Code &amp; programming</h3><p>LANGUAGES</p></div>
+            <div class="skill-grid">
+              <article class="skill-card"><img src="/assets/icons/python.png" alt="" width="42" height="42" loading="lazy"><span>Python</span></article>
+              <article class="skill-card"><img src="/assets/icons/arduino.png" alt="" width="42" height="42" loading="lazy"><span>Arduino C++</span></article>
+              <article class="skill-card"><img src="/assets/icons/c-programming.png" alt="" width="42" height="42" loading="lazy"><span>C</span></article>
+              <article class="skill-card"><img src="/assets/icons/cplusplus.png" alt="" width="42" height="42" loading="lazy"><span>C++</span></article>
+              <article class="skill-card"><img src="/assets/icons/javascript.png" alt="" width="42" height="42" loading="lazy"><span>JavaScript</span></article>
+              <article class="skill-card"><img src="/assets/icons/java.png" alt="" width="42" height="42" loading="lazy"><span>Java</span></article>
+              <article class="skill-card"><img src="/assets/icons/typescript.png" alt="" width="42" height="42" loading="lazy"><span>TypeScript</span></article>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-heading"><h3><span aria-hidden="true">▣</span> Hardware &amp; IT</h3><p>HANDS-ON</p></div>
+            <div class="skill-grid">
+              <article class="skill-card"><img src="/assets/icons/robot.png" alt="" width="42" height="42" loading="lazy"><span>Robotics <b class="skill-highlight">Proficient</b></span></article>
+              <article class="skill-card"><img src="/assets/icons/arduino.png" alt="" width="42" height="42" loading="lazy"><span>Arduino</span></article>
+              <article class="skill-card"><img src="/assets/icons/laptop.png" alt="" width="42" height="42" loading="lazy"><span>Laptop cleanliness</span></article>
+              <article class="skill-card"><img src="/assets/icons/ethernet.png" alt="" width="42" height="42" loading="lazy"><span>Networking</span></article>
+              <article class="skill-card"><img src="/assets/icons/maintenance.png" alt="" width="42" height="42" loading="lazy"><span>Troubleshooting</span></article>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-heading"><h3><span aria-hidden="true">⌘</span> Apps &amp; utilities</h3><p>IN THE TOOLBELT</p></div>
+            <div class="skill-grid">
+              <article class="skill-card"><img src="/assets/icons/remote-desktop.png" alt="" width="42" height="42" loading="lazy"><span>rdAssistant</span></article>
+              <article class="skill-card"><img src="/assets/icons/visual-basic.png" alt="" width="42" height="42" loading="lazy"><span>Visual Basic</span></article>
+              <article class="skill-card"><img src="/assets/icons/teamviewer.png" alt="" width="42" height="42" loading="lazy"><span>TeamViewer</span></article>
+              <article class="skill-card"><img src="/assets/icons/git.png" alt="" width="42" height="42" loading="lazy"><span>Git</span></article>
+              <article class="skill-card"><img src="/assets/icons/github.png" alt="" width="42" height="42" loading="lazy"><span>GitHub</span></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="world-section biome--cave" id="projects" data-layer="Cavern">
+        <div class="content-wrap">
+          <p class="eyebrow"><span class="layer-number">03</span> CAVE DISCOVERIES <span class="eyebrow-divider">/</span> PROJECTS</p>
+          <h2>What I’ve <span>built.</span></h2>
+          <p class="section-intro">A few things I’ve been building. Open a repository or try the live demo.</p>
+          <div class="project-grid">
+            <article class="project-card project-card--weather">
+              <div class="project-art project-art--weather" aria-hidden="true">
+                <span class="weather-sun"></span>
+                <span class="weather-cloud weather-cloud--one"></span>
+                <span class="weather-cloud weather-cloud--two"></span>
+                <span class="weather-mountain"></span>
+                <span class="weather-ground"></span>
+              </div>
+              <div class="project-card-content">
+                <p class="chest-label">WEATHER &amp; SAFETY <span aria-hidden="true">·</span> 001</p>
+                <h3>Weather &amp; Hazard Detection</h3>
+                <p>Check global weather forecasts and explore a Philippine-focused hazard map. Some hazard layers are sample data, not official emergency alerts.</p>
+                <ul class="project-tags" aria-label="Project technologies">
+                  <li>Open-Meteo</li><li>USGS</li><li>Leaflet</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://weather-and-hazard-detection.vercel.app" target="_blank" rel="noopener noreferrer">Open live demo <span aria-hidden="true">↗</span></a>
+                  <a href="https://github.com/Galaxy17isCrying/Weather-and-Hazard-Detection" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+            <article class="project-card project-card--discord">
+              <div class="project-art project-art--discord" aria-hidden="true">
+                <span class="discord-orbit"></span>
+                <span class="discord-mark">D</span>
+                <span class="discord-spark discord-spark--one">✦</span>
+                <span class="discord-spark discord-spark--two">✦</span>
+              </div>
+              <div class="project-card-content">
+                <p class="chest-label">BOT AUTOMATION <span aria-hidden="true">·</span> 002</p>
+                <h3>Discord Bot</h3>
+                <p>A Python Discord bot built with discord.py. Visit the repository to explore the source code and bot setup.</p>
+                <ul class="project-tags" aria-label="Project categories">
+                  <li>Python</li><li>discord.py</li><li>Bot</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://github.com/Galaxy17isCrying/discord-bot" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+            <article class="project-card project-card--pokedex">
+              <div class="project-art project-art--pokedex" aria-hidden="true">
+                <span class="pokedex-orbit pokedex-orbit--one"></span>
+                <span class="pokedex-orbit pokedex-orbit--two"></span>
+                <span class="pokedex-ball"><i></i></span>
+                <span class="pokedex-spark">✦</span>
+              </div>
+              <div class="project-card-content">
+                <p class="chest-label">POKÉDEX <span aria-hidden="true">·</span> 003</p>
+                <h3>Pokémon Pokédex</h3>
+                <p>A Python Pokédex refresh that combines an earlier version with AI-assisted interface improvements. Loading Pokémon sprites requires an internet connection.</p>
+                <ul class="project-tags" aria-label="Project technologies">
+                  <li>Python</li><li>Pokédex</li><li>UI</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://github.com/Galaxy17isCrying/Pokemon-Pokedex" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="world-section biome--deep" id="certifications" data-layer="Deep Underground">
+        <div class="content-wrap">
+          <p class="eyebrow"><span class="layer-number">04</span> ACHIEVEMENTS <span class="eyebrow-divider">/</span> CERTIFICATIONS</p>
+          <h2>A skill <span>unlocked.</span></h2>
+          <p class="section-intro">Learning is part of the adventure. Here’s a certificate you shared.</p>
+          <article class="certificate-card">
+            <span class="certificate-emblem" aria-hidden="true">✦<small>UNLOCKED</small></span>
+            <div class="certificate-details">
+              <p class="certificate-issuer">CISCO NETWORKING ACADEMY</p>
+              <h3>IT Customer Support Basics</h3>
+              <p>Certificate of Course Completion <span aria-hidden="true">·</span> October 31, 2026</p>
+              <a class="inline-link" href="/assets/certificates/Malinao_Certificate_ITsupport.pdf" target="_blank" rel="noopener noreferrer">Inspect certificate <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="world-section biome--bedrock" id="contact" data-layer="Bedrock">
+        <div class="content-wrap contact-layout">
+          <div class="contact-copy">
+            <p class="eyebrow"><span class="layer-number">05</span> BEDROCK <span class="eyebrow-divider">/</span> CONTACT</p>
+            <h2>Let’s make<br><span>something great.</span></h2>
+            <p>Have an idea, opportunity, or question? Drop me a message or find me on GitHub.</p>
+            <a class="contact-github" href="https://github.com/Galaxy17isCrying" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/icons/github.png" alt="" width="30" height="30" loading="lazy">
+              <span><small>PLAYER PROFILE</small><strong>Galaxy17isCrying</strong></span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <div class="github-stats" id="github-stats" role="status" aria-live="polite"><span class="github-indicator" aria-hidden="true"></span><span id="github-stats-text">Checking GitHub…</span></div>
+          </div>
+          <form class="contact-form" id="contact-form">
+            <label><span>Your name</span><input name="name" type="text" autocomplete="name" maxlength="100" placeholder="How should I address you?" required></label>
+            <label><span>Email address</span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></label>
+            <label><span>Subject</span><input name="subject" type="text" maxlength="150" placeholder="What would you like to discuss?" required></label>
+            <label><span>Message</span><textarea name="message" rows="5" maxlength="5000" placeholder="Tell me a little about it…" required></textarea></label>
+            <div class="honeypot" aria-hidden="true"><label for="contact-website">Leave this field empty</label><input id="contact-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+            <button class="button button--primary contact-submit" type="submit"><span class="submit-label">Send message</span><span aria-hidden="true">↗</span></button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>KENT MALINAO <span aria-hidden="true">·</span> A LITTLE WORLD OF CODE</span>
+      <a href="#home">BACK TO THE SURFACE ↑</a>
+      <span>MADE WITH CURIOSITY.</span>
+    </footer>
+  </body>
+</html>
