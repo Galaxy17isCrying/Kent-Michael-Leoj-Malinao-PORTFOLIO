@@ -1004,6 +1004,46 @@ h2 > span {
     0 0 32px rgba(106, 143, 111, 0.08);
 }
 
+.certificate-card--featured {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.certificate-preview {
+  position: relative;
+  align-self: stretch;
+  overflow: hidden;
+  border: 2px solid rgba(219, 220, 168, 0.38);
+  background: #f8f8fc;
+}
+
+.certificate-preview img {
+  width: 100%;
+  height: 100%;
+  max-height: 340px;
+  object-fit: contain;
+}
+
+.certificate-preview > span {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  padding: 0.4rem 0.55rem;
+  background: rgba(15, 17, 38, 0.9);
+  color: #fff;
+  font-family: var(--terminal);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.certificate-preview:hover > span {
+  background: #34365a;
+}
+
+.certificate-card--featured .certificate-details > p:not(.certificate-issuer) {
+  margin-bottom: 0.6rem;
+}
+
 .certificate-emblem {
   display: grid;
   width: 75px;
@@ -1369,6 +1409,14 @@ h2 > span {
     gap: 2rem;
   }
 
+  .certificate-card--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-preview img {
+    max-height: 300px;
+  }
+
   .education-card {
     grid-template-columns: 3.25rem minmax(110px, 0.3fr) 1fr;
   }
@@ -1602,6 +1650,14 @@ h2 > span {
     grid-template-columns: 58px 1fr;
     gap: 0.8rem;
     padding: 1rem;
+  }
+
+  .certificate-card--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-preview img {
+    max-height: 240px;
   }
 
   .certificate-emblem {
