@@ -27,6 +27,8 @@ A playful, pixel-inspired portfolio with an image-based, pixelated game-world ba
 
 6. Visit `http://127.0.0.1:5000`. Check `http://127.0.0.1:5000/api/health` to verify the API is running.
 
+You can also open `index.html` directly for a visual preview; local styles and images use relative paths. The contact form requires the Flask server above.
+
 The contact form submits to `POST /api/contact`. The server validates input, applies a five-message-per-hour per-IP limit, and stores valid messages using parameterized MySQL queries. If MySQL is unavailable, the form displays an error instead of claiming the message was sent.
 
 ## APIs
