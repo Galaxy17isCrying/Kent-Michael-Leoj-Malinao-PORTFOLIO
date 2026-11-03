@@ -2,7 +2,7 @@
 
 A playful, pixel-inspired portfolio with an image-based, pixelated game-world background, local PNG skill icons, an interactive GitHub profile card, and a Python contact API backed by MySQL.
 
-**Live portfolio:** [kentmichaelleojportfolio-n3v40qfv7-asteriod-eaters.vercel.app](https://kentmichaelleojportfolio-n3v40qfv7-asteriod-eaters.vercel.app/)
+**Live portfolio:** [https://kentmichaelleojportfolio-n3v40qfv7-asteriod-eaters.vercel.app/)
 
 ## Run locally
 
